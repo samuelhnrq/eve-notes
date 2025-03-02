@@ -1,0 +1,48 @@
+volumes:
+  mongo_data:
+  db-data:
+
+services:
+  mongodb:
+    image: mongo:8
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: toor
+  keycloak:
+    image: bitnami/keycloak:26
+    restart: unless-stopped
+    environment:
+      - KEYCLOAK_DATABASE_USER=postgres
+      - KEYCLOAK_DATABASE_PASSWORD=assoword
+      - KEYCLOAK_DATABASE_NAME=postgres
+      - KEYCLOAK_DATABASE_SCHEMA=public
+      - KEYCLOAK_ADMIN=keycloak
+      - KEYCLOAK_ADMIN_PASSWORD=keycloak
+      - KEYCLOAK_HTTP_PORT=8080
+      - KEYCLOAK_EXTRA_ARGS=--import-realm
+      - KEYCLOAK_DATABASE_HOST=pg_db
+      - TZ=UTC
+    volumes:
+      - ./migration/kc_export.json:/opt/bitnami/keycloak/data/import/kc_export.json:ro
+    depends_on:
+      pg_db:
+        condition: service_healthy
+    ports:
+      - 8889:8080
+  pg_db:
+    image: postgres:17
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "postgres"]
+      start_interval: 1s
+      interval: 2s
+      timeout: 2s
+      retries: 5
+    environment:
+      POSTGRES_PASSWORD: assoword
+    volumes:
+      - db-data:/var/lib/postgresql/data
