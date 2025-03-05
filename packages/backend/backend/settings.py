@@ -7,6 +7,8 @@ DOMAIN = {
   "notes": notes,
 }
 
+URL_PREFIX = "api"
+API_VERSION = "v1"
 RESOURCE_METHODS = ["GET", "POST", "DELETE"]
 ITEM_METHODS = ["GET", "PATCH", "PUT", "DELETE"]
 

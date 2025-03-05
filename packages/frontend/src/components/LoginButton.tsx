@@ -8,7 +8,9 @@ export function LoginButton() {
         await signIn("keycloak");
       }}
     >
-      <button type="submit">Sign in</button>
+      <button type="submit" className="btn">
+        Sign in
+      </button>
     </form>
   );
 }

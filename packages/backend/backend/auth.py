@@ -32,16 +32,16 @@ class JWTAuth(TokenAuth):
       app.logger.error("JWT error: %s", e)
       return False
     authors = app.data.driver.db["authors"]
-    if not authors.find_one({"email": token["email"]}):
+    user = authors.find_one({"email": token["email"]})
+    if not user:
       app.logger.info("Inserting author")
-      authors.insert_one(
-        {
-          "email": token["email"],
-          "name": token["name"],
-          "_created": datetime.now(),
-          "_updated": datetime.now(),
-        }
-      )
-    else:
-      app.logger.info("Author already exists")
+      user = {
+        "email": token["email"],
+        "name": token["name"],
+        "_created": datetime.now(),
+        "_updated": datetime.now(),
+      }
+      authors.insert_one(user)
+    self.set_user_or_token(user)
+    self.set_request_auth_value(user["_id"])
     return True

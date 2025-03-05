@@ -3,4 +3,11 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-side-bg: var(--color-gray-100);
+}
+
+@layer base {
+  .btn {
+    @apply cursor-pointer hover:underline border-1 py-2 px-4 rounded-md leading-none;
+  }
 }

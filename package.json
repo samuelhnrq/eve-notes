@@ -6,6 +6,10 @@
     "packages/*"
   ],
   "private": true,
+  "scripts": {
+    "prepare": "bun run -F backend prepare",
+    "dev": "bun run -F '*' dev"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

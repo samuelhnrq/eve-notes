@@ -5,6 +5,7 @@ volumes:
 services:
   mongodb:
     image: mongo:8
+    restart: unless-stopped
     ports:
       - 27017:27017
     volumes:
@@ -20,14 +21,14 @@ services:
       - KEYCLOAK_DATABASE_PASSWORD=assoword
       - KEYCLOAK_DATABASE_NAME=postgres
       - KEYCLOAK_DATABASE_SCHEMA=public
-      - KEYCLOAK_ADMIN=keycloak
-      - KEYCLOAK_ADMIN_PASSWORD=keycloak
+      - KC_BOOTSTRAP_ADMIN_USERNAME=keycloak
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=keycloak
       - KEYCLOAK_HTTP_PORT=8080
-      - KEYCLOAK_EXTRA_ARGS=--import-realm
+      - KEYCLOAK_EXTRA_ARGS=--import-realm --verbose
       - KEYCLOAK_DATABASE_HOST=pg_db
       - TZ=UTC
     volumes:
-      - ./migration/kc_export.json:/opt/bitnami/keycloak/data/import/kc_export.json:ro
+      - ./kc_export.json:/opt/bitnami/keycloak/data/import/kc_export.json:ro
     depends_on:
       pg_db:
         condition: service_healthy
