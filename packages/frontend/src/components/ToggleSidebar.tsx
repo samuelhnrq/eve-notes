@@ -2,7 +2,7 @@
 
 import HistoryIcon from "@/icons/HistoryIcon";
 import { cn } from "@/lib/cn";
-import { useState, type PropsWithChildren } from "react";
+import { type PropsWithChildren, useState } from "react";
 
 function ToggleSidebar({
   children,

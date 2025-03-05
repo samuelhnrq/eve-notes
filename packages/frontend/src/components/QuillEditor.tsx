@@ -5,10 +5,10 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 
-export type EditorProps = {
+export interface EditorProps {
   defaultValue: Note;
   onTextChange: (newVal: string) => void;
-};
+}
 
 // Editor is an uncontrolled React component
 const Editor = ({ defaultValue, onTextChange }: EditorProps) => {
@@ -59,7 +59,7 @@ const Editor = ({ defaultValue, onTextChange }: EditorProps) => {
     quillRef.current.setContents(JSON.parse(defaultValue.body), "api");
   }, [defaultValue]);
 
-  return <div ref={containerRef}></div>;
+  return <div ref={containerRef} />;
 };
 
 export default Editor;

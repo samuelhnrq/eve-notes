@@ -62,7 +62,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 grant_type: "refresh_token",
                 refresh_token: token.refreshToken,
               }),
-            }
+            },
           );
 
           const tokens = await response.json();

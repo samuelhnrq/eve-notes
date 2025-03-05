@@ -6,9 +6,9 @@ import type { Note } from "@/lib/notesRepo";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-type SidebarNoteProps = {
+interface SidebarNoteProps {
   note: Note;
-};
+}
 
 function SidebarNote({ note }: SidebarNoteProps) {
   // TODO: Every item in the note list re-renders due to useParams, this needs refactor with inner component

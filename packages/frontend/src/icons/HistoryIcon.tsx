@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-type HistoryIconProps = { className?: string };
+interface HistoryIconProps { className?: string }
 
 function HistoryIcon({ className }: HistoryIconProps) {
   return (

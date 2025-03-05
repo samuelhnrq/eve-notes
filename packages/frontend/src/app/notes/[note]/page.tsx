@@ -1,4 +1,4 @@
-import { getNote, renameNote, type Note } from "@/lib/notesRepo";
+import { type Note, getNote, renameNote } from "@/lib/notesRepo";
 import React from "react";
 import ClientEditor from "@/components/NoteEditor";
 import { redirect } from "next/navigation";
@@ -15,7 +15,7 @@ async function PageEdit({ params }: { params: Promise<{ note: string }> }) {
   if (!note) {
     return redirect("/");
   }
-  const renameAction = renameNote.bind(null, note);
+  const renameAction = renameNote.bind(undefined, note);
 
   return (
     <div className="flex-1 flex relative">

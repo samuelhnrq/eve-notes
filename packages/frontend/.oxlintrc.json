@@ -1,9 +1,16 @@
 {
   "plugins": ["react", "unicorn", "typescript", "oxc"],
-  "categories": {},
+  "categories": {
+    "correctness": "error",
+    "style": "error",
+    "perf": "error"
+  },
   "rules": {
     "typescript/no-extra-non-null-assertion": "warn",
     "unicorn/prefer-string-starts-ends-with": "warn",
+    "unicorn/filename-case": "off",
+    "unicorn/no-null": "off",
+    "unicorn/catch-error-name": "off",
     "oxc/bad-replace-all-arg": "warn",
     "react/no-danger-with-children": "warn",
     "for-direction": "warn",
@@ -13,6 +20,12 @@
     "no-with": "warn",
     "no-class-assign": "warn",
     "no-ex-assign": "warn",
+    "eslint/yoda": "error",
+    "eslint/no-ternary": "off",
+    "eslint/no-magic-numbers": "off",
+    "eslint/sort-keys": "off",
+    "eslint/func-style": "off",
+    "eslint/sort-imports": "off",
     "no-unsafe-negation": "warn",
     "unicorn/no-empty-file": "warn",
     "no-constant-condition": "warn",

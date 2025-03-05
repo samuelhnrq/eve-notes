@@ -1,7 +1,10 @@
 import { cn } from "@/lib/cn";
 import React from "react";
 
-export type AddIconProps = { className?: string; onClick?: () => void };
+export interface AddIconProps {
+  className?: string;
+  onClick?: () => void;
+}
 
 function AddIcon({ className, onClick }: AddIconProps) {
   return (

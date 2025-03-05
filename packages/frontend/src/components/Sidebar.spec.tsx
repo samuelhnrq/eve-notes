@@ -2,9 +2,8 @@ import { render, screen } from "@testing-library/react";
 import Sidebar from "./Sidebar";
 import { getAllNotes } from "@/lib/notesRepo";
 import { auth } from "@/auth";
-import { jest, describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, jest, mock, beforeEach } from "bun:test";
 import { useParams } from "next/navigation";
-import { beforeEach } from "bun:test";
 
 mock.module("next/navigation", () => ({
   useParams: mock(),

@@ -6,9 +6,9 @@ import type { TestingLibraryMatchers } from "@testing-library/jest-dom/matchers"
 expect.extend(matchers);
 
 declare module "bun:test" {
+  // eslint-disable-next-line no-empty-interface
   interface Matchers<T>
     extends TestingLibraryMatchers<typeof expect.stringContaining, T> {}
-  // interface AsymmetricMatchers extends TestingLibraryMatchers<any, any> {}
 }
 
 // Optional: cleans up `render` after each test

@@ -1,25 +1,25 @@
 import AddIcon from "@/icons/AddIcon";
-import { createEmptyNote, getAllNotes, type Note } from "@/lib/notesRepo";
+import { type Note, createEmptyNote, getAllNotes } from "@/lib/notesRepo";
 import { twMerge } from "tailwind-merge";
 import SidebarNote from "./SidebarNote";
 import { HTTPError } from "ky";
 
-type SidebarProps = {
+interface SidebarProps {
   className?: string;
-};
+}
 
 export default async function Sidebar({ className }: SidebarProps) {
   let notes: Note[] = [];
   let error: string | null = null;
-  let errorCode: number = 0;
+  let errorCode = 0;
 
   try {
     notes = await getAllNotes();
-  } catch (e) {
+  } catch (err) {
     error = "Error loading notes";
-    console.log(e);
-    if (e instanceof HTTPError) {
-      errorCode = e.response.status;
+    console.log(err);
+    if (err instanceof HTTPError) {
+      errorCode = err.response.status;
     }
   }
 

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 import { formatDate } from "@/lib/dates";
-import { getNoteHistory, restoreNote, type Note } from "@/lib/notesRepo";
+import { type Note, getNoteHistory, restoreNote } from "@/lib/notesRepo";
 import React from "react";
 
 async function HistorySidebar({
@@ -16,7 +16,7 @@ async function HistorySidebar({
       {notes.map((version) => (
         <div
           key={version._etag}
-          onClick={restoreNote.bind(null, note, version)}
+          onClick={restoreNote.bind(undefined, note, version)}
           className="border-1 border-slate-500 mb-4 rounded-md p-2 cursor-pointer"
         >
           <div>{version.title}</div>

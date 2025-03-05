@@ -13,9 +13,9 @@ export interface Note {
   _updated: string;
 }
 
-type ListApiResponse = {
+interface ListApiResponse {
   _items: Note[];
-};
+}
 
 export async function renameNote(note: Note, form: FormData) {
   const newTitle = form.get("title");
@@ -68,7 +68,7 @@ export async function getNote(id: string): Promise<Note> {
 
 export async function updateNoteText(
   oldNote: Pick<Note, "_id" | "_etag">,
-  newBody: string
+  newBody: string,
 ): Promise<Note> {
   const data = await client
     .patch(`notes/${oldNote._id}`, {
