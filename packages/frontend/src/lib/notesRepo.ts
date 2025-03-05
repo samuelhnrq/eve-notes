@@ -66,9 +66,16 @@ export async function getNote(id: string): Promise<Note> {
   return data;
 }
 
+export async function deleteNote(note: Note) {
+  await client.delete(`notes/${note._id}`, {
+    headers: { "If-Match": note._etag },
+  });
+  revalidatePath(`notes/${note._id}`);
+}
+
 export async function updateNoteText(
   oldNote: Pick<Note, "_id" | "_etag">,
-  newBody: string,
+  newBody: string
 ): Promise<Note> {
   const data = await client
     .patch(`notes/${oldNote._id}`, {
